@@ -308,12 +308,12 @@ class TokenERC721Contract extends Contract {
         }
 
         // Add a non-fungible token
-        const tokenIdInt = parseInt(tokenId);
-        if (isNaN(tokenIdInt)) {
-            throw new Error(`The tokenId ${tokenId} is invalid. tokenId must be an integer`);
-        }
+        const tokenIdStr = tokenId;
+        // if (isNaN(tokenIdStr)) {
+        //     throw new Error(`The tokenId ${tokenId} is invalid. tokenId must be an integer`);
+        // }
         const nft = {
-            tokenId: tokenIdInt,
+            tokenId: tokenIdStr,
             owner: minter,
             tokenURI: tokenURI
         };
@@ -327,7 +327,7 @@ class TokenERC721Contract extends Contract {
         await ctx.stub.putState(balanceKey, Buffer.from('\u0000'));
 
         // Emit the Transfer event
-        const transferEvent = { from: '0x0', to: minter, tokenId: tokenIdInt };
+        const transferEvent = { from: '0x0', to: minter, tokenId: tokenIdStr };
         ctx.stub.setEvent('Transfer', Buffer.from(JSON.stringify(transferEvent)));
 
         return nft;
