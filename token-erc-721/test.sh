@@ -1,0 +1,9 @@
+sh run-1-admin-setup-deploy-cc.sh
+sh run-2-org1-admin-enroll-minter-in-ca.sh
+sh run-3-org2-admin-enroll-participants.sh
+sh run-4-org1-minter-invoke-mint-nfts.sh
+sh run-5-org1-minter-invoke-transfer-to-surveyor.sh
+sh run-6-org2-surveyor-query-owner-of.sh
+sh run-7-org2-surveyor-invoke-transfer-to-planner.sh
+sh run-8-org2-planner-invoke-transfer-to-clerk.sh
+sh run-9-org2-clerk-invoke-transfer-to-citizens.sh
