@@ -95,7 +95,7 @@ sh run-8-org2-planner-invoke-transfer-to-clerk.sh
 >Shell 4 - (Clerk) Transfer 3 NFTs to 3 Citizens (1 each) i.e. issue proof of title 
 ```bash
 sh run-9-org2-clerk-invoke-transfer-to-citizens.sh`````
-
+```
 
 ---
 ##### Credits
