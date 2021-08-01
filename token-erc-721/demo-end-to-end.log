@@ -1,0 +1,708 @@
+[0;34mStopping network[0m
+Stopping cli                    ... 
+Stopping orderer.example.com    ... 
+Stopping peer0.org1.example.com ... 
+Stopping peer0.org2.example.com ... 
+Stopping ca_org2                ... 
+Stopping ca_orderer             ... 
+Stopping ca_org1                ... 
+Stopping ca_orderer             ... done
+Stopping ca_org1                ... done
+Stopping ca_org2                ... done
+Stopping orderer.example.com    ... done
+Stopping cli                    ... done
+Stopping peer0.org1.example.com ... done
+Stopping peer0.org2.example.com ... done
+Removing cli                    ... 
+Removing orderer.example.com    ... 
+Removing peer0.org1.example.com ... 
+Removing peer0.org2.example.com ... 
+Removing ca_org2                ... 
+Removing ca_orderer             ... 
+Removing ca_org1                ... 
+Removing ca_orderer             ... done
+Removing ca_org1                ... done
+Removing cli                    ... done
+Removing peer0.org2.example.com ... done
+Removing peer0.org1.example.com ... done
+Removing ca_org2                ... done
+Removing orderer.example.com    ... done
+Removing network fabric_test
+Removing volume docker_orderer.example.com
+Removing volume docker_peer0.org1.example.com
+Removing volume docker_peer0.org2.example.com
+The DOCKER_SOCK variable is not set. Defaulting to a blank string.
+Removing network fabric_test
+Network fabric_test not found.
+Removing volume docker_peer0.org3.example.com
+Volume docker_peer0.org3.example.com not found.
+[0;34mRemoving remaining containers[0m
+[0;34mRemoving generated chaincode docker images[0m
+Untagged: dev-peer0.org2.example.com-token_erc721_1.0-a09a008873361398b2dc1907b40d87373a6910906f20a2d2dfa3b3a4278a0cbb-d2b86b3067d7f0aceebc9dbf399cffdb4b15648055428af5f7d756bfc0159e39:latest
+Deleted: sha256:c8b2d7e5fd054d6717940b385b2fc51ce2f9998bd63db9dbdcb42651fb785b73
+Deleted: sha256:09717eb52879b5bcf7311beea70fe4f66600411f5e47d285ac8a6082bd6f4be5
+Deleted: sha256:ac2b4b207fdbeac1cb8b382126c4852ffa190c3fc3003e1cb3bfa590221657cf
+Deleted: sha256:50519627fda9d7a93f27caa17271d0096999d3a9f988fdbe63db93d0b9b6ad70
+Untagged: dev-peer0.org1.example.com-token_erc721_1.0-a09a008873361398b2dc1907b40d87373a6910906f20a2d2dfa3b3a4278a0cbb-5e707126836b2549c54cfe98a8995774ea18f13cdee9f35c44d952b271aaadb0:latest
+Deleted: sha256:cb11bd0cacc2086f9fe2e209ac27ba843eedfcd537c2c731e30ec908aa26bc63
+Deleted: sha256:a7a6a13649665a7f00e8999700c87eb567570fb2c23296523308477996f2d870
+Deleted: sha256:c90e6b08536c924daa4b99c72bc0af13aa2d32bd5843f6899e3b986879cbc10b
+Deleted: sha256:b4ea6963b26d3d4e9998d4c9b9598c814a401b109947fab8978b8ee075e978d9
+
+== Start network with CA, create channel ==
+[0;34mCreating channel 'mychannel'.[0m
+[0;34mIf network is not up, starting nodes with CLI timeout of '5' tries and CLI delay of '3' seconds and using database 'leveldb with crypto from 'Certificate Authorities'[0m
+[0;34mBringing up network[0m
+[0;34mLOCAL_VERSION=2.3.2[0m
+[0;34mDOCKER_IMAGE_VERSION=2.3.2[0m
+[0;34mCA_LOCAL_VERSION=1.5.0[0m
+[0;34mCA_DOCKER_IMAGE_VERSION=1.5.0[0m
+[0;34mGenerating certificates using Fabric CA[0m
+Creating network "fabric_test" with the default driver
+Creating ca_orderer ... 
+Creating ca_org1    ... 
+Creating ca_org2    ... 
+Creating ca_org1    ... done
+Creating ca_org2    ... done
+Creating ca_orderer ... done
+[0;34mCreating Org1 Identities[0m
+[0;34mEnrolling the CA admin[0m
++ fabric-ca-client enroll -u https://admin:adminpw@localhost:7054 --caname ca-org1 --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/org1/tls-cert.pem
+2021/08/01 20:49:08 [INFO] Created a default configuration file at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/fabric-ca-client-config.yaml
+2021/08/01 20:49:08 [INFO] TLS Enabled
+2021/08/01 20:49:08 [INFO] generating key: &{A:ecdsa S:256}
+2021/08/01 20:49:08 [INFO] encoded CSR
+2021/08/01 20:49:08 [INFO] Stored client certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/msp/signcerts/cert.pem
+2021/08/01 20:49:08 [INFO] Stored root CA certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/msp/cacerts/localhost-7054-ca-org1.pem
+2021/08/01 20:49:08 [INFO] Stored Issuer public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/msp/IssuerPublicKey
+2021/08/01 20:49:08 [INFO] Stored Issuer revocation public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/msp/IssuerRevocationPublicKey
+[0;34mRegistering peer0[0m
++ fabric-ca-client register --caname ca-org1 --id.name peer0 --id.secret peer0pw --id.type peer --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/org1/tls-cert.pem
+2021/08/01 20:49:08 [INFO] Configuration file location: /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/fabric-ca-client-config.yaml
+2021/08/01 20:49:08 [INFO] TLS Enabled
+2021/08/01 20:49:08 [INFO] TLS Enabled
+Password: peer0pw
+[0;34mRegistering user[0m
++ fabric-ca-client register --caname ca-org1 --id.name user1 --id.secret user1pw --id.type client --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/org1/tls-cert.pem
+2021/08/01 20:49:08 [INFO] Configuration file location: /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/fabric-ca-client-config.yaml
+2021/08/01 20:49:08 [INFO] TLS Enabled
+2021/08/01 20:49:08 [INFO] TLS Enabled
+Password: user1pw
+[0;34mRegistering the org admin[0m
++ fabric-ca-client register --caname ca-org1 --id.name org1admin --id.secret org1adminpw --id.type admin --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/org1/tls-cert.pem
+2021/08/01 20:49:09 [INFO] Configuration file location: /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/fabric-ca-client-config.yaml
+2021/08/01 20:49:09 [INFO] TLS Enabled
+2021/08/01 20:49:09 [INFO] TLS Enabled
+Password: org1adminpw
+[0;34mGenerating the peer0 msp[0m
++ fabric-ca-client enroll -u https://peer0:peer0pw@localhost:7054 --caname ca-org1 -M /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp --csr.hosts peer0.org1.example.com --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/org1/tls-cert.pem
+2021/08/01 20:49:09 [INFO] TLS Enabled
+2021/08/01 20:49:09 [INFO] generating key: &{A:ecdsa S:256}
+2021/08/01 20:49:09 [INFO] encoded CSR
+2021/08/01 20:49:09 [INFO] Stored client certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/signcerts/cert.pem
+2021/08/01 20:49:09 [INFO] Stored root CA certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/cacerts/localhost-7054-ca-org1.pem
+2021/08/01 20:49:09 [INFO] Stored Issuer public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/IssuerPublicKey
+2021/08/01 20:49:09 [INFO] Stored Issuer revocation public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/IssuerRevocationPublicKey
+[0;34mGenerating the peer0-tls certificates[0m
++ fabric-ca-client enroll -u https://peer0:peer0pw@localhost:7054 --caname ca-org1 -M /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls --enrollment.profile tls --csr.hosts peer0.org1.example.com --csr.hosts localhost --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/org1/tls-cert.pem
+2021/08/01 20:49:09 [INFO] TLS Enabled
+2021/08/01 20:49:09 [INFO] generating key: &{A:ecdsa S:256}
+2021/08/01 20:49:09 [INFO] encoded CSR
+2021/08/01 20:49:09 [INFO] Stored client certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/signcerts/cert.pem
+2021/08/01 20:49:09 [INFO] Stored TLS root CA certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/tlscacerts/tls-localhost-7054-ca-org1.pem
+2021/08/01 20:49:09 [INFO] Stored Issuer public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/IssuerPublicKey
+2021/08/01 20:49:09 [INFO] Stored Issuer revocation public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/IssuerRevocationPublicKey
+[0;34mGenerating the user msp[0m
++ fabric-ca-client enroll -u https://user1:user1pw@localhost:7054 --caname ca-org1 -M /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/org1/tls-cert.pem
+2021/08/01 20:49:09 [INFO] TLS Enabled
+2021/08/01 20:49:09 [INFO] generating key: &{A:ecdsa S:256}
+2021/08/01 20:49:09 [INFO] encoded CSR
+2021/08/01 20:49:09 [INFO] Stored client certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/signcerts/cert.pem
+2021/08/01 20:49:09 [INFO] Stored root CA certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/cacerts/localhost-7054-ca-org1.pem
+2021/08/01 20:49:09 [INFO] Stored Issuer public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/IssuerPublicKey
+2021/08/01 20:49:09 [INFO] Stored Issuer revocation public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/IssuerRevocationPublicKey
+[0;34mGenerating the org admin msp[0m
++ fabric-ca-client enroll -u https://org1admin:org1adminpw@localhost:7054 --caname ca-org1 -M /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/org1/tls-cert.pem
+2021/08/01 20:49:09 [INFO] TLS Enabled
+2021/08/01 20:49:09 [INFO] generating key: &{A:ecdsa S:256}
+2021/08/01 20:49:09 [INFO] encoded CSR
+2021/08/01 20:49:10 [INFO] Stored client certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/cert.pem
+2021/08/01 20:49:10 [INFO] Stored root CA certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/cacerts/localhost-7054-ca-org1.pem
+2021/08/01 20:49:10 [INFO] Stored Issuer public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/IssuerPublicKey
+2021/08/01 20:49:10 [INFO] Stored Issuer revocation public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/IssuerRevocationPublicKey
+[0;34mCreating Org2 Identities[0m
+[0;34mEnrolling the CA admin[0m
++ fabric-ca-client enroll -u https://admin:adminpw@localhost:8054 --caname ca-org2 --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/org2/tls-cert.pem
+2021/08/01 20:49:10 [INFO] Created a default configuration file at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/fabric-ca-client-config.yaml
+2021/08/01 20:49:10 [INFO] TLS Enabled
+2021/08/01 20:49:10 [INFO] generating key: &{A:ecdsa S:256}
+2021/08/01 20:49:10 [INFO] encoded CSR
+2021/08/01 20:49:10 [INFO] Stored client certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/msp/signcerts/cert.pem
+2021/08/01 20:49:10 [INFO] Stored root CA certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/msp/cacerts/localhost-8054-ca-org2.pem
+2021/08/01 20:49:10 [INFO] Stored Issuer public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/msp/IssuerPublicKey
+2021/08/01 20:49:10 [INFO] Stored Issuer revocation public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/msp/IssuerRevocationPublicKey
+[0;34mRegistering peer0[0m
++ fabric-ca-client register --caname ca-org2 --id.name peer0 --id.secret peer0pw --id.type peer --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/org2/tls-cert.pem
+2021/08/01 20:49:10 [INFO] Configuration file location: /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/fabric-ca-client-config.yaml
+2021/08/01 20:49:10 [INFO] TLS Enabled
+2021/08/01 20:49:10 [INFO] TLS Enabled
+Password: peer0pw
+[0;34mRegistering user[0m
++ fabric-ca-client register --caname ca-org2 --id.name user1 --id.secret user1pw --id.type client --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/org2/tls-cert.pem
+2021/08/01 20:49:10 [INFO] Configuration file location: /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/fabric-ca-client-config.yaml
+2021/08/01 20:49:10 [INFO] TLS Enabled
+2021/08/01 20:49:10 [INFO] TLS Enabled
+Password: user1pw
+[0;34mRegistering the org admin[0m
++ fabric-ca-client register --caname ca-org2 --id.name org2admin --id.secret org2adminpw --id.type admin --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/org2/tls-cert.pem
+2021/08/01 20:49:10 [INFO] Configuration file location: /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/fabric-ca-client-config.yaml
+2021/08/01 20:49:10 [INFO] TLS Enabled
+2021/08/01 20:49:10 [INFO] TLS Enabled
+Password: org2adminpw
+[0;34mGenerating the peer0 msp[0m
++ fabric-ca-client enroll -u https://peer0:peer0pw@localhost:8054 --caname ca-org2 -M /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp --csr.hosts peer0.org2.example.com --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/org2/tls-cert.pem
+2021/08/01 20:49:10 [INFO] TLS Enabled
+2021/08/01 20:49:10 [INFO] generating key: &{A:ecdsa S:256}
+2021/08/01 20:49:10 [INFO] encoded CSR
+2021/08/01 20:49:10 [INFO] Stored client certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp/signcerts/cert.pem
+2021/08/01 20:49:10 [INFO] Stored root CA certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp/cacerts/localhost-8054-ca-org2.pem
+2021/08/01 20:49:10 [INFO] Stored Issuer public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp/IssuerPublicKey
+2021/08/01 20:49:10 [INFO] Stored Issuer revocation public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp/IssuerRevocationPublicKey
+[0;34mGenerating the peer0-tls certificates[0m
++ fabric-ca-client enroll -u https://peer0:peer0pw@localhost:8054 --caname ca-org2 -M /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls --enrollment.profile tls --csr.hosts peer0.org2.example.com --csr.hosts localhost --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/org2/tls-cert.pem
+2021/08/01 20:49:10 [INFO] TLS Enabled
+2021/08/01 20:49:10 [INFO] generating key: &{A:ecdsa S:256}
+2021/08/01 20:49:11 [INFO] encoded CSR
+2021/08/01 20:49:11 [INFO] Stored client certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/signcerts/cert.pem
+2021/08/01 20:49:11 [INFO] Stored TLS root CA certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/tlscacerts/tls-localhost-8054-ca-org2.pem
+2021/08/01 20:49:11 [INFO] Stored Issuer public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/IssuerPublicKey
+2021/08/01 20:49:11 [INFO] Stored Issuer revocation public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/IssuerRevocationPublicKey
+[0;34mGenerating the user msp[0m
++ fabric-ca-client enroll -u https://user1:user1pw@localhost:8054 --caname ca-org2 -M /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/org2/tls-cert.pem
+2021/08/01 20:49:11 [INFO] TLS Enabled
+2021/08/01 20:49:11 [INFO] generating key: &{A:ecdsa S:256}
+2021/08/01 20:49:11 [INFO] encoded CSR
+2021/08/01 20:49:11 [INFO] Stored client certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/signcerts/cert.pem
+2021/08/01 20:49:11 [INFO] Stored root CA certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/cacerts/localhost-8054-ca-org2.pem
+2021/08/01 20:49:11 [INFO] Stored Issuer public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/IssuerPublicKey
+2021/08/01 20:49:11 [INFO] Stored Issuer revocation public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/IssuerRevocationPublicKey
+[0;34mGenerating the org admin msp[0m
++ fabric-ca-client enroll -u https://org2admin:org2adminpw@localhost:8054 --caname ca-org2 -M /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/org2/tls-cert.pem
+2021/08/01 20:49:11 [INFO] TLS Enabled
+2021/08/01 20:49:11 [INFO] generating key: &{A:ecdsa S:256}
+2021/08/01 20:49:11 [INFO] encoded CSR
+2021/08/01 20:49:11 [INFO] Stored client certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/cert.pem
+2021/08/01 20:49:11 [INFO] Stored root CA certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/cacerts/localhost-8054-ca-org2.pem
+2021/08/01 20:49:11 [INFO] Stored Issuer public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/IssuerPublicKey
+2021/08/01 20:49:11 [INFO] Stored Issuer revocation public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/IssuerRevocationPublicKey
+[0;34mCreating Orderer Org Identities[0m
+[0;34mEnrolling the CA admin[0m
++ fabric-ca-client enroll -u https://admin:adminpw@localhost:9054 --caname ca-orderer --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/ordererOrg/tls-cert.pem
+2021/08/01 20:49:11 [INFO] Created a default configuration file at /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/fabric-ca-client-config.yaml
+2021/08/01 20:49:11 [INFO] TLS Enabled
+2021/08/01 20:49:11 [INFO] generating key: &{A:ecdsa S:256}
+2021/08/01 20:49:11 [INFO] encoded CSR
+2021/08/01 20:49:11 [INFO] Stored client certificate at /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/msp/signcerts/cert.pem
+2021/08/01 20:49:11 [INFO] Stored root CA certificate at /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/msp/cacerts/localhost-9054-ca-orderer.pem
+2021/08/01 20:49:11 [INFO] Stored Issuer public key at /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/msp/IssuerPublicKey
+2021/08/01 20:49:11 [INFO] Stored Issuer revocation public key at /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/msp/IssuerRevocationPublicKey
+[0;34mRegistering orderer[0m
++ fabric-ca-client register --caname ca-orderer --id.name orderer --id.secret ordererpw --id.type orderer --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/ordererOrg/tls-cert.pem
+2021/08/01 20:49:11 [INFO] Configuration file location: /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/fabric-ca-client-config.yaml
+2021/08/01 20:49:11 [INFO] TLS Enabled
+2021/08/01 20:49:11 [INFO] TLS Enabled
+Password: ordererpw
+[0;34mRegistering the orderer admin[0m
++ fabric-ca-client register --caname ca-orderer --id.name ordererAdmin --id.secret ordererAdminpw --id.type admin --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/ordererOrg/tls-cert.pem
+2021/08/01 20:49:11 [INFO] Configuration file location: /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/fabric-ca-client-config.yaml
+2021/08/01 20:49:11 [INFO] TLS Enabled
+2021/08/01 20:49:11 [INFO] TLS Enabled
+Password: ordererAdminpw
+[0;34mGenerating the orderer msp[0m
++ fabric-ca-client enroll -u https://orderer:ordererpw@localhost:9054 --caname ca-orderer -M /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp --csr.hosts orderer.example.com --csr.hosts localhost --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/ordererOrg/tls-cert.pem
+2021/08/01 20:49:12 [INFO] TLS Enabled
+2021/08/01 20:49:12 [INFO] generating key: &{A:ecdsa S:256}
+2021/08/01 20:49:12 [INFO] encoded CSR
+2021/08/01 20:49:12 [INFO] Stored client certificate at /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/signcerts/cert.pem
+2021/08/01 20:49:12 [INFO] Stored root CA certificate at /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/cacerts/localhost-9054-ca-orderer.pem
+2021/08/01 20:49:12 [INFO] Stored Issuer public key at /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/IssuerPublicKey
+2021/08/01 20:49:12 [INFO] Stored Issuer revocation public key at /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/IssuerRevocationPublicKey
+[0;34mGenerating the orderer-tls certificates[0m
++ fabric-ca-client enroll -u https://orderer:ordererpw@localhost:9054 --caname ca-orderer -M /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls --enrollment.profile tls --csr.hosts orderer.example.com --csr.hosts localhost --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/ordererOrg/tls-cert.pem
+2021/08/01 20:49:12 [INFO] TLS Enabled
+2021/08/01 20:49:12 [INFO] generating key: &{A:ecdsa S:256}
+2021/08/01 20:49:12 [INFO] encoded CSR
+2021/08/01 20:49:12 [INFO] Stored client certificate at /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/signcerts/cert.pem
+2021/08/01 20:49:12 [INFO] Stored TLS root CA certificate at /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/tlscacerts/tls-localhost-9054-ca-orderer.pem
+2021/08/01 20:49:12 [INFO] Stored Issuer public key at /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/IssuerPublicKey
+2021/08/01 20:49:12 [INFO] Stored Issuer revocation public key at /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/IssuerRevocationPublicKey
+[0;34mGenerating the admin msp[0m
++ fabric-ca-client enroll -u https://ordererAdmin:ordererAdminpw@localhost:9054 --caname ca-orderer -M /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/users/Admin@example.com/msp --tls.certfiles /Users/kieran/git/fabric-samples/test-network/organizations/fabric-ca/ordererOrg/tls-cert.pem
+2021/08/01 20:49:12 [INFO] TLS Enabled
+2021/08/01 20:49:12 [INFO] generating key: &{A:ecdsa S:256}
+2021/08/01 20:49:12 [INFO] encoded CSR
+2021/08/01 20:49:12 [INFO] Stored client certificate at /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/users/Admin@example.com/msp/signcerts/cert.pem
+2021/08/01 20:49:12 [INFO] Stored root CA certificate at /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/users/Admin@example.com/msp/cacerts/localhost-9054-ca-orderer.pem
+2021/08/01 20:49:12 [INFO] Stored Issuer public key at /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/users/Admin@example.com/msp/IssuerPublicKey
+2021/08/01 20:49:12 [INFO] Stored Issuer revocation public key at /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/users/Admin@example.com/msp/IssuerRevocationPublicKey
+[0;34mGenerating CCP files for Org1 and Org2[0m
+Creating volume "docker_orderer.example.com" with default driver
+Creating volume "docker_peer0.org1.example.com" with default driver
+Creating volume "docker_peer0.org2.example.com" with default driver
+Found orphan containers (ca_org1, ca_org2, ca_orderer) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up.
+Creating peer0.org1.example.com ... 
+Creating orderer.example.com    ... 
+Creating peer0.org2.example.com ... 
+Creating peer0.org2.example.com ... done
+Creating orderer.example.com    ... done
+Creating peer0.org1.example.com ... done
+Creating cli                    ... 
+Creating cli                    ... done
+CONTAINER ID   IMAGE                               COMMAND                  CREATED         STATUS                  PORTS                                                                      NAMES
+4bc8bef98af5   hyperledger/fabric-tools:latest     "/bin/bash"              1 second ago    Up Less than a second                                                                              cli
+48847f34b7b7   hyperledger/fabric-orderer:latest   "orderer"                2 seconds ago   Up 1 second             0.0.0.0:7050->7050/tcp, 0.0.0.0:7053->7053/tcp, 0.0.0.0:17050->17050/tcp   orderer.example.com
+74fa6b3c1817   hyperledger/fabric-peer:latest      "peer node start"        2 seconds ago   Up 1 second             0.0.0.0:9051->9051/tcp, 7051/tcp, 0.0.0.0:19051->19051/tcp                 peer0.org2.example.com
+0b82ad17928c   hyperledger/fabric-peer:latest      "peer node start"        2 seconds ago   Up Less than a second   0.0.0.0:7051->7051/tcp, 0.0.0.0:17051->17051/tcp                           peer0.org1.example.com
+57cb88114fd8   hyperledger/fabric-ca:latest        "sh -c 'fabric-ca-se…"   9 seconds ago   Up 8 seconds            0.0.0.0:7054->7054/tcp, 0.0.0.0:17054->17054/tcp                           ca_org1
+26961022aeef   hyperledger/fabric-ca:latest        "sh -c 'fabric-ca-se…"   9 seconds ago   Up 8 seconds            0.0.0.0:8054->8054/tcp, 7054/tcp, 0.0.0.0:18054->18054/tcp                 ca_org2
+ad6af3778351   hyperledger/fabric-ca:latest        "sh -c 'fabric-ca-se…"   9 seconds ago   Up 8 seconds            0.0.0.0:9054->9054/tcp, 7054/tcp, 0.0.0.0:19054->19054/tcp                 ca_orderer
+[0;34mGenerating channel genesis block 'mychannel.block'[0m
+/Users/kieran/git/fabric-samples/test-network/../bin/configtxgen
++ configtxgen -profile TwoOrgsApplicationGenesis -outputBlock ./channel-artifacts/mychannel.block -channelID mychannel
+[34m2021-08-01 20:49:15.692 IST [common.tools.configtxgen] main -> INFO 001[0m Loading configuration
+[34m2021-08-01 20:49:15.702 IST [common.tools.configtxgen.localconfig] completeInitialization -> INFO 002[0m orderer type: etcdraft
+[34m2021-08-01 20:49:15.703 IST [common.tools.configtxgen.localconfig] completeInitialization -> INFO 003[0m Orderer.EtcdRaft.Options unset, setting to tick_interval:"500ms" election_tick:10 heartbeat_tick:1 max_inflight_blocks:5 snapshot_interval_size:16777216 
+[34m2021-08-01 20:49:15.703 IST [common.tools.configtxgen.localconfig] Load -> INFO 004[0m Loaded configuration: /Users/kieran/git/fabric-samples/test-network/configtx/configtx.yaml
+[34m2021-08-01 20:49:15.706 IST [common.tools.configtxgen] doOutputBlock -> INFO 005[0m Generating genesis block
+[34m2021-08-01 20:49:15.706 IST [common.tools.configtxgen] doOutputBlock -> INFO 006[0m Creating application channel genesis block
+[34m2021-08-01 20:49:15.707 IST [common.tools.configtxgen] doOutputBlock -> INFO 007[0m Writing genesis block
++ res=0
+[0;34mCreating channel mychannel[0m
+[0;34mUsing organization 1[0m
++ osnadmin channel join --channelID mychannel --config-block ./channel-artifacts/mychannel.block -o localhost:7053 --ca-file /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem --client-cert /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt --client-key /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.key
++ res=0
+Status: 201
+{
+	"name": "mychannel",
+	"url": "/participation/v1/channels/mychannel",
+	"consensusRelation": "consenter",
+	"status": "active",
+	"height": 1
+}
+
+[0;32mChannel 'mychannel' created[0m
+[0;34mJoining org1 peer to the channel...[0m
+[0;34mUsing organization 1[0m
++ peer channel join -b ./channel-artifacts/mychannel.block
++ res=0
+[34m2021-08-01 20:49:21.981 IST [channelCmd] InitCmdFactory -> INFO 001[0m Endorser and orderer connections initialized
+[34m2021-08-01 20:49:22.004 IST [channelCmd] executeJoin -> INFO 002[0m Successfully submitted proposal to join channel
+[0;34mJoining org2 peer to the channel...[0m
+[0;34mUsing organization 2[0m
++ peer channel join -b ./channel-artifacts/mychannel.block
++ res=0
+[34m2021-08-01 20:49:25.081 IST [channelCmd] InitCmdFactory -> INFO 001[0m Endorser and orderer connections initialized
+[34m2021-08-01 20:49:25.104 IST [channelCmd] executeJoin -> INFO 002[0m Successfully submitted proposal to join channel
+[0;34mSetting anchor peer for org1...[0m
+[0;34mUsing organization 1[0m
+[0;34mFetching channel config for channel mychannel[0m
+[0;34mUsing organization 1[0m
+[0;34mFetching the most recent configuration block for the channel[0m
++ peer channel fetch config config_block.pb -o orderer.example.com:7050 --ordererTLSHostnameOverride orderer.example.com -c mychannel --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+[34m2021-08-01 19:49:25.444 UTC [channelCmd] InitCmdFactory -> INFO 001[0m Endorser and orderer connections initialized
+[34m2021-08-01 19:49:25.448 UTC [cli.common] readBlock -> INFO 002[0m Received block: 0
+[34m2021-08-01 19:49:25.448 UTC [channelCmd] fetch -> INFO 003[0m Retrieving last config block: 0
+[34m2021-08-01 19:49:25.450 UTC [cli.common] readBlock -> INFO 004[0m Received block: 0
+[0;34mDecoding config block to JSON and isolating config to Org1MSPconfig.json[0m
++ configtxlator proto_decode --input config_block.pb --type common.Block
++ jq '.data.data[0].payload.data.config'
+[0;34mGenerating anchor peer update transaction for Org1 on channel mychannel[0m
++ jq '.channel_group.groups.Application.groups.Org1MSP.values += {"AnchorPeers":{"mod_policy": "Admins","value":{"anchor_peers": [{"host": "peer0.org1.example.com","port": 7051}]},"version": "0"}}' Org1MSPconfig.json
++ configtxlator proto_encode --input Org1MSPconfig.json --type common.Config
++ configtxlator proto_encode --input Org1MSPmodified_config.json --type common.Config
++ configtxlator compute_update --channel_id mychannel --original original_config.pb --updated modified_config.pb
++ configtxlator proto_decode --input config_update.pb --type common.ConfigUpdate
++ jq .
+++ cat config_update.json
++ echo '{"payload":{"header":{"channel_header":{"channel_id":"mychannel", "type":2}},"data":{"config_update":{' '"channel_id":' '"mychannel",' '"isolated_data":' '{},' '"read_set":' '{' '"groups":' '{' '"Application":' '{' '"groups":' '{' '"Org1MSP":' '{' '"groups":' '{},' '"mod_policy":' '"",' '"policies":' '{' '"Admins":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Endorsement":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Readers":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Writers":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '}' '},' '"values":' '{' '"MSP":' '{' '"mod_policy":' '"",' '"value":' null, '"version":' '"0"' '}' '},' '"version":' '"0"' '}' '},' '"mod_policy":' '"",' '"policies":' '{},' '"values":' '{},' '"version":' '"0"' '}' '},' '"mod_policy":' '"",' '"policies":' '{},' '"values":' '{},' '"version":' '"0"' '},' '"write_set":' '{' '"groups":' '{' '"Application":' '{' '"groups":' '{' '"Org1MSP":' '{' '"groups":' '{},' '"mod_policy":' '"Admins",' '"policies":' '{' '"Admins":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Endorsement":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Readers":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Writers":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '}' '},' '"values":' '{' '"AnchorPeers":' '{' '"mod_policy":' '"Admins",' '"value":' '{' '"anchor_peers":' '[' '{' '"host":' '"peer0.org1.example.com",' '"port":' 7051 '}' ']' '},' '"version":' '"0"' '},' '"MSP":' '{' '"mod_policy":' '"",' '"value":' null, '"version":' '"0"' '}' '},' '"version":' '"1"' '}' '},' '"mod_policy":' '"",' '"policies":' '{},' '"values":' '{},' '"version":' '"0"' '}' '},' '"mod_policy":' '"",' '"policies":' '{},' '"values":' '{},' '"version":' '"0"' '}' '}}}}'
++ configtxlator proto_encode --input config_update_in_envelope.json --type common.Envelope
+[34m2021-08-01 19:49:25.691 UTC [channelCmd] InitCmdFactory -> INFO 001[0m Endorser and orderer connections initialized
+[34m2021-08-01 19:49:25.706 UTC [channelCmd] update -> INFO 002[0m Successfully submitted channel update
+[0;32mAnchor peer set for org 'Org1MSP' on channel 'mychannel'[0m
+[0;34mSetting anchor peer for org2...[0m
+[0;34mUsing organization 2[0m
+[0;34mFetching channel config for channel mychannel[0m
+[0;34mUsing organization 2[0m
+[0;34mFetching the most recent configuration block for the channel[0m
++ peer channel fetch config config_block.pb -o orderer.example.com:7050 --ordererTLSHostnameOverride orderer.example.com -c mychannel --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+[34m2021-08-01 19:49:26.052 UTC [channelCmd] InitCmdFactory -> INFO 001[0m Endorser and orderer connections initialized
+[34m2021-08-01 19:49:26.056 UTC [cli.common] readBlock -> INFO 002[0m Received block: 1
+[34m2021-08-01 19:49:26.056 UTC [channelCmd] fetch -> INFO 003[0m Retrieving last config block: 1
+[34m2021-08-01 19:49:26.058 UTC [cli.common] readBlock -> INFO 004[0m Received block: 1
+[0;34mDecoding config block to JSON and isolating config to Org2MSPconfig.json[0m
++ configtxlator proto_decode --input config_block.pb --type common.Block
++ jq '.data.data[0].payload.data.config'
+[0;34mGenerating anchor peer update transaction for Org2 on channel mychannel[0m
++ jq '.channel_group.groups.Application.groups.Org2MSP.values += {"AnchorPeers":{"mod_policy": "Admins","value":{"anchor_peers": [{"host": "peer0.org2.example.com","port": 9051}]},"version": "0"}}' Org2MSPconfig.json
++ configtxlator proto_encode --input Org2MSPconfig.json --type common.Config
++ configtxlator proto_encode --input Org2MSPmodified_config.json --type common.Config
++ configtxlator compute_update --channel_id mychannel --original original_config.pb --updated modified_config.pb
++ configtxlator proto_decode --input config_update.pb --type common.ConfigUpdate
++ jq .++ cat config_update.json
+
++ echo '{"payload":{"header":{"channel_header":{"channel_id":"mychannel", "type":2}},"data":{"config_update":{' '"channel_id":' '"mychannel",' '"isolated_data":' '{},' '"read_set":' '{' '"groups":' '{' '"Application":' '{' '"groups":' '{' '"Org2MSP":' '{' '"groups":' '{},' '"mod_policy":' '"",' '"policies":' '{' '"Admins":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Endorsement":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Readers":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Writers":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '}' '},' '"values":' '{' '"MSP":' '{' '"mod_policy":' '"",' '"value":' null, '"version":' '"0"' '}' '},' '"version":' '"0"' '}' '},' '"mod_policy":' '"",' '"policies":' '{},' '"values":' '{},' '"version":' '"0"' '}' '},' '"mod_policy":' '"",' '"policies":' '{},' '"values":' '{},' '"version":' '"0"' '},' '"write_set":' '{' '"groups":' '{' '"Application":' '{' '"groups":' '{' '"Org2MSP":' '{' '"groups":' '{},' '"mod_policy":' '"Admins",' '"policies":' '{' '"Admins":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Endorsement":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Readers":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '},' '"Writers":' '{' '"mod_policy":' '"",' '"policy":' null, '"version":' '"0"' '}' '},' '"values":' '{' '"AnchorPeers":' '{' '"mod_policy":' '"Admins",' '"value":' '{' '"anchor_peers":' '[' '{' '"host":' '"peer0.org2.example.com",' '"port":' 9051 '}' ']' '},' '"version":' '"0"' '},' '"MSP":' '{' '"mod_policy":' '"",' '"value":' null, '"version":' '"0"' '}' '},' '"version":' '"1"' '}' '},' '"mod_policy":' '"",' '"policies":' '{},' '"values":' '{},' '"version":' '"0"' '}' '},' '"mod_policy":' '"",' '"policies":' '{},' '"values":' '{},' '"version":' '"0"' '}' '}}}}'
++ configtxlator proto_encode --input config_update_in_envelope.json --type common.Envelope
+[34m2021-08-01 19:49:26.283 UTC [channelCmd] InitCmdFactory -> INFO 001[0m Endorser and orderer connections initialized
+[34m2021-08-01 19:49:26.297 UTC [channelCmd] update -> INFO 002[0m Successfully submitted channel update
+[0;32mAnchor peer set for org 'Org2MSP' on channel 'mychannel'[0m
+[0;32mChannel 'mychannel' joined[0m
+
+== Deploy ChainCode ==
+[0;34mdeploying chaincode on channel 'mychannel'[0m
+executing with the following
+- CHANNEL_NAME: [0;32mmychannel[0m
+- CC_NAME: [0;32mtoken_erc721[0m
+- CC_SRC_PATH: [0;32m../token-erc-721/chaincode-javascript/[0m
+- CC_SRC_LANGUAGE: [0;32mjavascript[0m
+- CC_VERSION: [0;32m1.0[0m
+- CC_SEQUENCE: [0;32m1[0m
+- CC_END_POLICY: [0;32mNA[0m
+- CC_COLL_CONFIG: [0;32mNA[0m
+- CC_INIT_FCN: [0;32mNA[0m
+- DELAY: [0;32m3[0m
+- MAX_RETRY: [0;32m5[0m
+- VERBOSE: [0;32mfalse[0m
++ peer lifecycle chaincode package token_erc721.tar.gz --path ../token-erc-721/chaincode-javascript/ --lang node --label token_erc721_1.0
++ res=0
+[0;32mChaincode is packaged[0m
+[0;34mInstalling chaincode on peer0.org1...[0m
+[0;34mUsing organization 1[0m
++ peer lifecycle chaincode install token_erc721.tar.gz
++ res=0
+[34m2021-08-01 20:49:50.537 IST [cli.lifecycle.chaincode] submitInstallProposal -> INFO 001[0m Installed remotely: response:<status:200 payload:"\nQtoken_erc721_1.0:a09a008873361398b2dc1907b40d87373a6910906f20a2d2dfa3b3a4278a0cbb\022\020token_erc721_1.0" > 
+[34m2021-08-01 20:49:50.538 IST [cli.lifecycle.chaincode] submitInstallProposal -> INFO 002[0m Chaincode code package identifier: token_erc721_1.0:a09a008873361398b2dc1907b40d87373a6910906f20a2d2dfa3b3a4278a0cbb
+[0;32mChaincode is installed on peer0.org1[0m
+[0;34mInstall chaincode on peer0.org2...[0m
+[0;34mUsing organization 2[0m
++ peer lifecycle chaincode install token_erc721.tar.gz
++ res=0
+[34m2021-08-01 20:50:06.465 IST [cli.lifecycle.chaincode] submitInstallProposal -> INFO 001[0m Installed remotely: response:<status:200 payload:"\nQtoken_erc721_1.0:a09a008873361398b2dc1907b40d87373a6910906f20a2d2dfa3b3a4278a0cbb\022\020token_erc721_1.0" > 
+[34m2021-08-01 20:50:06.466 IST [cli.lifecycle.chaincode] submitInstallProposal -> INFO 002[0m Chaincode code package identifier: token_erc721_1.0:a09a008873361398b2dc1907b40d87373a6910906f20a2d2dfa3b3a4278a0cbb
+[0;32mChaincode is installed on peer0.org2[0m
+[0;34mUsing organization 1[0m
++ peer lifecycle chaincode queryinstalled
++ res=0
+Installed chaincodes on peer:
+Package ID: token_erc721_1.0:a09a008873361398b2dc1907b40d87373a6910906f20a2d2dfa3b3a4278a0cbb, Label: token_erc721_1.0
+[0;32mQuery installed successful on peer0.org1 on channel[0m
+[0;34mUsing organization 1[0m
++ peer lifecycle chaincode approveformyorg -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem --channelID mychannel --name token_erc721 --version 1.0 --package-id token_erc721_1.0:a09a008873361398b2dc1907b40d87373a6910906f20a2d2dfa3b3a4278a0cbb --sequence 1
++ res=0
+[34m2021-08-01 20:50:08.660 IST [chaincodeCmd] ClientWait -> INFO 001[0m txid [9b488fbf1fbc78aa3766ab813d309ef52f1ac16235a5330e4e0cb7afc25ccd35] committed with status (VALID) at localhost:7051
+[0;32mChaincode definition approved on peer0.org1 on channel 'mychannel'[0m
+[0;34mUsing organization 1[0m
+[0;34mChecking the commit readiness of the chaincode definition on peer0.org1 on channel 'mychannel'...[0m
+[0;34mAttempting to check the commit readiness of the chaincode definition on peer0.org1, Retry after 3 seconds.[0m
++ peer lifecycle chaincode checkcommitreadiness --channelID mychannel --name token_erc721 --version 1.0 --sequence 1 --output json
++ res=0
+{
+	"approvals": {
+		"Org1MSP": true,
+		"Org2MSP": false
+	}
+}
+[0;34mChecking the commit readiness of the chaincode definition successful on peer0.org1 on channel 'mychannel'[0m
+[0;34mUsing organization 2[0m
+[0;34mChecking the commit readiness of the chaincode definition on peer0.org2 on channel 'mychannel'...[0m
+[0;34mAttempting to check the commit readiness of the chaincode definition on peer0.org2, Retry after 3 seconds.[0m
++ peer lifecycle chaincode checkcommitreadiness --channelID mychannel --name token_erc721 --version 1.0 --sequence 1 --output json
++ res=0
+{
+	"approvals": {
+		"Org1MSP": true,
+		"Org2MSP": false
+	}
+}
+[0;34mChecking the commit readiness of the chaincode definition successful on peer0.org2 on channel 'mychannel'[0m
+[0;34mUsing organization 2[0m
++ peer lifecycle chaincode approveformyorg -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem --channelID mychannel --name token_erc721 --version 1.0 --package-id token_erc721_1.0:a09a008873361398b2dc1907b40d87373a6910906f20a2d2dfa3b3a4278a0cbb --sequence 1
++ res=0
+[34m2021-08-01 20:50:16.926 IST [chaincodeCmd] ClientWait -> INFO 001[0m txid [0aaa3d19a1fd369543cf2013712ff74ca555e3056b50882df9a9617560612fd9] committed with status (VALID) at localhost:9051
+[0;32mChaincode definition approved on peer0.org2 on channel 'mychannel'[0m
+[0;34mUsing organization 1[0m
+[0;34mChecking the commit readiness of the chaincode definition on peer0.org1 on channel 'mychannel'...[0m
+[0;34mAttempting to check the commit readiness of the chaincode definition on peer0.org1, Retry after 3 seconds.[0m
++ peer lifecycle chaincode checkcommitreadiness --channelID mychannel --name token_erc721 --version 1.0 --sequence 1 --output json
++ res=0
+{
+	"approvals": {
+		"Org1MSP": true,
+		"Org2MSP": true
+	}
+}
+[0;34mChecking the commit readiness of the chaincode definition successful on peer0.org1 on channel 'mychannel'[0m
+[0;34mUsing organization 2[0m
+[0;34mChecking the commit readiness of the chaincode definition on peer0.org2 on channel 'mychannel'...[0m
+[0;34mAttempting to check the commit readiness of the chaincode definition on peer0.org2, Retry after 3 seconds.[0m
++ peer lifecycle chaincode checkcommitreadiness --channelID mychannel --name token_erc721 --version 1.0 --sequence 1 --output json
++ res=0
+{
+	"approvals": {
+		"Org1MSP": true,
+		"Org2MSP": true
+	}
+}
+[0;34mChecking the commit readiness of the chaincode definition successful on peer0.org2 on channel 'mychannel'[0m
+[0;34mUsing organization 1[0m
+[0;34mUsing organization 2[0m
++ peer lifecycle chaincode commit -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile /Users/kieran/git/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem --channelID mychannel --name token_erc721 --peerAddresses localhost:7051 --tlsRootCertFiles /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses localhost:9051 --tlsRootCertFiles /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt --version 1.0 --sequence 1
++ res=0
+[34m2021-08-01 20:50:25.197 IST [chaincodeCmd] ClientWait -> INFO 001[0m txid [7174241e9157723c9ec7d1bf97848d12b1c9d32a075309bdc10b6f903d5f6143] committed with status (VALID) at localhost:9051
+[34m2021-08-01 20:50:25.205 IST [chaincodeCmd] ClientWait -> INFO 002[0m txid [7174241e9157723c9ec7d1bf97848d12b1c9d32a075309bdc10b6f903d5f6143] committed with status (VALID) at localhost:7051
+[0;32mChaincode definition committed on channel 'mychannel'[0m
+[0;34mUsing organization 1[0m
+[0;34mQuerying chaincode definition on peer0.org1 on channel 'mychannel'...[0m
+[0;34mAttempting to Query committed status on peer0.org1, Retry after 3 seconds.[0m
++ peer lifecycle chaincode querycommitted --channelID mychannel --name token_erc721
++ res=0
+Committed chaincode definition for chaincode 'token_erc721' on channel 'mychannel':
+Version: 1.0, Sequence: 1, Endorsement Plugin: escc, Validation Plugin: vscc, Approvals: [Org1MSP: true, Org2MSP: true]
+[0;32mQuery chaincode definition successful on peer0.org1 on channel 'mychannel'[0m
+[0;34mUsing organization 2[0m
+[0;34mQuerying chaincode definition on peer0.org2 on channel 'mychannel'...[0m
+[0;34mAttempting to Query committed status on peer0.org2, Retry after 3 seconds.[0m
++ peer lifecycle chaincode querycommitted --channelID mychannel --name token_erc721
++ res=0
+Committed chaincode definition for chaincode 'token_erc721' on channel 'mychannel':
+Version: 1.0, Sequence: 1, Endorsement Plugin: escc, Validation Plugin: vscc, Approvals: [Org1MSP: true, Org2MSP: true]
+[0;32mQuery chaincode definition successful on peer0.org2 on channel 'mychannel'[0m
+[0;34mChaincode initialization is not required[0m
+
+== Network Ready ==
+----------------------------------------------------------------
+
+== As CA for Org1 register a minter user and provide an identity ==
+2021/08/01 20:50:37 [INFO] Configuration file location: /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/fabric-ca-client-config.yaml
+2021/08/01 20:50:37 [INFO] TLS Enabled
+2021/08/01 20:50:37 [INFO] TLS Enabled
+Password: minterpw
+
+== As CA for Org1 enroll the minter with Org1 MSP ==
+2021/08/01 20:50:40 [INFO] TLS Enabled
+2021/08/01 20:50:40 [INFO] generating key: &{A:ecdsa S:256}
+2021/08/01 20:50:40 [INFO] encoded CSR
+2021/08/01 20:50:40 [INFO] Stored client certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/minter@org1.example.com/msp/signcerts/cert.pem
+2021/08/01 20:50:40 [INFO] Stored root CA certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/minter@org1.example.com/msp/cacerts/localhost-7054-ca-org1.pem
+2021/08/01 20:50:40 [INFO] Stored Issuer public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/minter@org1.example.com/msp/IssuerPublicKey
+2021/08/01 20:50:40 [INFO] Stored Issuer revocation public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/minter@org1.example.com/msp/IssuerRevocationPublicKey
+
+== Provide a copy of the MSP config to the minter ==
+----------------------------------------------------------------
+
+== As CA for Org2 register particpants and provide identities ==
+2021/08/01 20:50:46 [INFO] Configuration file location: /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/fabric-ca-client-config.yaml
+2021/08/01 20:50:47 [INFO] TLS Enabled
+2021/08/01 20:50:47 [INFO] TLS Enabled
+Password: surveyorpw
+2021/08/01 20:50:47 [INFO] Configuration file location: /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/fabric-ca-client-config.yaml
+2021/08/01 20:50:47 [INFO] TLS Enabled
+2021/08/01 20:50:47 [INFO] TLS Enabled
+Password: plannerpw
+2021/08/01 20:50:47 [INFO] Configuration file location: /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/fabric-ca-client-config.yaml
+2021/08/01 20:50:47 [INFO] TLS Enabled
+2021/08/01 20:50:47 [INFO] TLS Enabled
+Password: clerkpw
+2021/08/01 20:50:47 [INFO] Configuration file location: /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/fabric-ca-client-config.yaml
+2021/08/01 20:50:47 [INFO] TLS Enabled
+2021/08/01 20:50:47 [INFO] TLS Enabled
+Password: citizen1pw
+2021/08/01 20:50:47 [INFO] Configuration file location: /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/fabric-ca-client-config.yaml
+2021/08/01 20:50:47 [INFO] TLS Enabled
+2021/08/01 20:50:47 [INFO] TLS Enabled
+Password: citizen2pw
+2021/08/01 20:50:47 [INFO] Configuration file location: /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/fabric-ca-client-config.yaml
+2021/08/01 20:50:47 [INFO] TLS Enabled
+2021/08/01 20:50:47 [INFO] TLS Enabled
+Password: citizen3pw
+
+== As CA for Org2 enroll the particpants with Org2 MSP ==
+2021/08/01 20:50:51 [INFO] TLS Enabled
+2021/08/01 20:50:51 [INFO] generating key: &{A:ecdsa S:256}
+2021/08/01 20:50:51 [INFO] encoded CSR
+2021/08/01 20:50:51 [INFO] Stored client certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/surveyor@org2.example.com/msp/signcerts/cert.pem
+2021/08/01 20:50:51 [INFO] Stored root CA certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/surveyor@org2.example.com/msp/cacerts/localhost-8054-ca-org2.pem
+2021/08/01 20:50:51 [INFO] Stored Issuer public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/surveyor@org2.example.com/msp/IssuerPublicKey
+2021/08/01 20:50:51 [INFO] Stored Issuer revocation public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/surveyor@org2.example.com/msp/IssuerRevocationPublicKey
+2021/08/01 20:50:51 [INFO] TLS Enabled
+2021/08/01 20:50:51 [INFO] generating key: &{A:ecdsa S:256}
+2021/08/01 20:50:51 [INFO] encoded CSR
+2021/08/01 20:50:51 [INFO] Stored client certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/planner@org2.example.com/msp/signcerts/cert.pem
+2021/08/01 20:50:51 [INFO] Stored root CA certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/planner@org2.example.com/msp/cacerts/localhost-8054-ca-org2.pem
+2021/08/01 20:50:51 [INFO] Stored Issuer public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/planner@org2.example.com/msp/IssuerPublicKey
+2021/08/01 20:50:51 [INFO] Stored Issuer revocation public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/planner@org2.example.com/msp/IssuerRevocationPublicKey
+2021/08/01 20:50:51 [INFO] TLS Enabled
+2021/08/01 20:50:51 [INFO] generating key: &{A:ecdsa S:256}
+2021/08/01 20:50:51 [INFO] encoded CSR
+2021/08/01 20:50:51 [INFO] Stored client certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/clerk@org2.example.com/msp/signcerts/cert.pem
+2021/08/01 20:50:51 [INFO] Stored root CA certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/clerk@org2.example.com/msp/cacerts/localhost-8054-ca-org2.pem
+2021/08/01 20:50:51 [INFO] Stored Issuer public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/clerk@org2.example.com/msp/IssuerPublicKey
+2021/08/01 20:50:51 [INFO] Stored Issuer revocation public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/clerk@org2.example.com/msp/IssuerRevocationPublicKey
+2021/08/01 20:50:51 [INFO] TLS Enabled
+2021/08/01 20:50:51 [INFO] generating key: &{A:ecdsa S:256}
+2021/08/01 20:50:51 [INFO] encoded CSR
+2021/08/01 20:50:51 [INFO] Stored client certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/citizen1@org2.example.com/msp/signcerts/cert.pem
+2021/08/01 20:50:51 [INFO] Stored root CA certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/citizen1@org2.example.com/msp/cacerts/localhost-8054-ca-org2.pem
+2021/08/01 20:50:51 [INFO] Stored Issuer public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/citizen1@org2.example.com/msp/IssuerPublicKey
+2021/08/01 20:50:51 [INFO] Stored Issuer revocation public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/citizen1@org2.example.com/msp/IssuerRevocationPublicKey
+2021/08/01 20:50:51 [INFO] TLS Enabled
+2021/08/01 20:50:51 [INFO] generating key: &{A:ecdsa S:256}
+2021/08/01 20:50:51 [INFO] encoded CSR
+2021/08/01 20:50:52 [INFO] Stored client certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/citizen2@org2.example.com/msp/signcerts/cert.pem
+2021/08/01 20:50:52 [INFO] Stored root CA certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/citizen2@org2.example.com/msp/cacerts/localhost-8054-ca-org2.pem
+2021/08/01 20:50:52 [INFO] Stored Issuer public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/citizen2@org2.example.com/msp/IssuerPublicKey
+2021/08/01 20:50:52 [INFO] Stored Issuer revocation public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/citizen2@org2.example.com/msp/IssuerRevocationPublicKey
+2021/08/01 20:50:52 [INFO] TLS Enabled
+2021/08/01 20:50:52 [INFO] generating key: &{A:ecdsa S:256}
+2021/08/01 20:50:52 [INFO] encoded CSR
+2021/08/01 20:50:52 [INFO] Stored client certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/citizen3@org2.example.com/msp/signcerts/cert.pem
+2021/08/01 20:50:52 [INFO] Stored root CA certificate at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/citizen3@org2.example.com/msp/cacerts/localhost-8054-ca-org2.pem
+2021/08/01 20:50:52 [INFO] Stored Issuer public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/citizen3@org2.example.com/msp/IssuerPublicKey
+2021/08/01 20:50:52 [INFO] Stored Issuer revocation public key at /Users/kieran/git/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/citizen3@org2.example.com/msp/IssuerRevocationPublicKey
+
+== Provide a copy of the MSP config to the particpants ==
+----------------------------------------------------------------
+
+== Org1 Minter minting some NTFs ==
+[34m2021-08-01 20:50:55.419 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"{\"tokenId\":\"001/001/001\",\"owner\":\"x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=minter::/C=US/ST=North Carolina/L=Durham/O=org1.example.com/CN=ca.org1.example.com\",\"tokenURI\":\"https://landregistry.acme.com/parcel-nft-001-001-001.json\"}" 
+[34m2021-08-01 20:50:55.516 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"{\"tokenId\":\"001/001/002\",\"owner\":\"x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=minter::/C=US/ST=North Carolina/L=Durham/O=org1.example.com/CN=ca.org1.example.com\",\"tokenURI\":\"https://landregistry.acme.com/parcel-nft-001-001-002.json\"}" 
+[34m2021-08-01 20:50:55.613 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"{\"tokenId\":\"001/001/003\",\"owner\":\"x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=minter::/C=US/ST=North Carolina/L=Durham/O=org1.example.com/CN=ca.org1.example.com\",\"tokenURI\":\"https://landregistry.acme.com/parcel-nft-001-001-003.json\"}" 
+[34m2021-08-01 20:50:55.712 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"{\"tokenId\":\"001/001/004\",\"owner\":\"x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=minter::/C=US/ST=North Carolina/L=Durham/O=org1.example.com/CN=ca.org1.example.com\",\"tokenURI\":\"https://landregistry.acme.com/parcel-nft-001-001-004.json\"}" 
+[34m2021-08-01 20:50:55.810 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"{\"tokenId\":\"001/001/005\",\"owner\":\"x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=minter::/C=US/ST=North Carolina/L=Durham/O=org1.example.com/CN=ca.org1.example.com\",\"tokenURI\":\"https://landregistry.acme.com/parcel-nft-001-001-005.json\"}" 
+
+== Org1 Minter Identity and Balance ==
+x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=minter::/C=US/ST=North Carolina/L=Durham/O=org1.example.com/CN=ca.org1.example.com
+5
+
+== Org1 Minter OwnerOf ==
+001/001/001 ->  x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=minter::/C=US/ST=North Carolina/L=Durham/O=org1.example.com/CN=ca.org1.example.com
+001/001/002 ->  x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=minter::/C=US/ST=North Carolina/L=Durham/O=org1.example.com/CN=ca.org1.example.com
+001/001/003 ->  x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=minter::/C=US/ST=North Carolina/L=Durham/O=org1.example.com/CN=ca.org1.example.com
+001/001/004 ->  x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=minter::/C=US/ST=North Carolina/L=Durham/O=org1.example.com/CN=ca.org1.example.com
+001/001/005 ->  x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=minter::/C=US/ST=North Carolina/L=Durham/O=org1.example.com/CN=ca.org1.example.com
+== Total Supply is now  ==
+5
+----------------------------------------------------------------
+
+== Before Transfer NFTs ==
+== Org1 Minter Balance ==
+x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=minter::/C=US/ST=North Carolina/L=Durham/O=org1.example.com/CN=ca.org1.example.com
+5
+
+== Transfer all NFTs to the Surveyor ==
+[34m2021-08-01 20:51:11.635 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"true" 
+[34m2021-08-01 20:51:11.731 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"true" 
+[34m2021-08-01 20:51:11.820 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"true" 
+[34m2021-08-01 20:51:11.910 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"true" 
+[34m2021-08-01 20:51:12.003 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"true" 
+
+== After Transfer NFTs Org1 Minter Balance ==
+x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=minter::/C=US/ST=North Carolina/L=Durham/O=org1.example.com/CN=ca.org1.example.com
+0
+----------------------------------------------------------------
+
+== Org2 surveyor Identity and Balance ==
+x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=surveyor::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+5
+== Org2 planner Identity and Balance ==
+x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=planner::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+0
+== Org2 clerk Identity and Balance ==
+x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=clerk::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+0
+== Org2 citizen1 Identity and Balance ==
+x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=citizen1::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+0
+== Org2 citizen2 Identity and Balance ==
+x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=citizen2::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+0
+== Org2 citizen3 Identity and Balance ==
+x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=citizen3::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+0
+
+== Org2 OwnerOf ==
+001/001/001 ->  x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=surveyor::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+001/001/002 ->  x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=surveyor::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+001/001/003 ->  x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=surveyor::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+001/001/004 ->  x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=surveyor::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+001/001/005 ->  x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=surveyor::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+----------------------------------------------------------------
+
+== Before Transfer NFTs ==
+== Org2 Surveyor Balance ==
+x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=surveyor::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+5
+
+== Surveyor Transfer just first 4 NFTs to the Planner ==
+[34m2021-08-01 20:51:28.573 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"true" 
+[34m2021-08-01 20:51:28.664 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"true" 
+[34m2021-08-01 20:51:28.752 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"true" 
+[34m2021-08-01 20:51:28.845 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"true" 
+
+== Surveyor Rejects 1 NFT, burning token ==
+[34m2021-08-01 20:51:31.950 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"true" 
+
+== After Transfer NFTs Org2 Surveyor Balance ==
+x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=surveyor::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+0
+== After Transfer NFTs Org2 OwnerOf ==
+001/001/001 ->  x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=planner::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+001/001/002 ->  x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=planner::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+001/001/003 ->  x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=planner::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+001/001/004 ->  x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=planner::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+Error: endorsement failure during query. response: status:500 message:"error in simulation: transaction returned with failure: Error: The tokenId 001/001/005 is invalid. It does not exist" 
+001/001/005 -> 
+== Total Supply is now  ==
+4
+----------------------------------------------------------------
+
+== Planner Transfer just first 3 NFTs to the Clerk ==
+[34m2021-08-01 20:51:38.624 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"true" 
+[34m2021-08-01 20:51:38.722 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"true" 
+[34m2021-08-01 20:51:38.812 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"true" 
+
+== Planner Rejects 1 NFT, burning token ==
+[34m2021-08-01 20:51:41.909 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"true" 
+
+== After Transfer NFTs Org2 Planner Balance ==
+x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=planner::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+0
+== After Transfer NFTs Org2 OwnerOf ==
+001/001/001 ->  x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=clerk::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+001/001/002 ->  x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=clerk::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+001/001/003 ->  x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=clerk::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+Error: endorsement failure during query. response: status:500 message:"error in simulation: transaction returned with failure: Error: The tokenId 001/001/004 is invalid. It does not exist" 
+001/001/004 -> 
+Error: endorsement failure during query. response: status:500 message:"error in simulation: transaction returned with failure: Error: The tokenId 001/001/005 is invalid. It does not exist" 
+001/001/005 -> 
+== Total Supply is now  ==
+3
+----------------------------------------------------------------
+
+== Clerk Issues Titles / Transfer NFTs to the Citizens ==
+[34m2021-08-01 20:51:48.627 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"true" 
+[34m2021-08-01 20:51:48.726 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"true" 
+[34m2021-08-01 20:51:48.825 IST [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001[0m Chaincode invoke successful. result: status:200 payload:"true" 
+
+== After Transfer NFTs Org2 Clerk Balance ==
+x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=clerk::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+0
+
+== After Transfer NFTs Org2 OwnerOf ==
+001/001/001 ->  x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=citizen1::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+001/001/002 ->  x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=citizen2::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+001/001/003 ->  x509::/C=US/ST=North Carolina/O=Hyperledger/OU=client/CN=citizen3::/C=UK/ST=Hampshire/L=Hursley/O=org2.example.com/CN=ca.org2.example.com
+
+== Total Supply is now  ==
+3
+----------------------------------------------------------------
+

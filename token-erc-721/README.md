@@ -43,6 +43,8 @@ Each CA manages participants within each organisation
 ---
 ### NFT (Land Parcels) mint -> approve -> transfer -> issue title  
 
+
+
 ### Demo
 > End to end demo
 ```bash
@@ -97,7 +99,7 @@ sh run-9-org2-clerk-invoke-transfer-to-citizens.sh`````
 
 ---
 ##### Credits
-🙏 This project is a fork of hyperledger fabric SDK
+🙏 This project is a fork of hyperledger fabric SDK see docs/README.md
 
 > base version : 
 ```bash

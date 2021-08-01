@@ -29,7 +29,7 @@ peer chaincode query -C mychannel -n token_erc721 -c '{"function":"ClientAccount
 echo ""
 
 echo "== After Transfer NFTs Org2 OwnerOf =="
-for n in $(seq 1 5)
+for n in $(seq 1 3)
 do
   echo "001/001/00${n} -> " `peer chaincode query -C mychannel -n token_erc721 -c '{"function":"OwnerOf","Args":["'"001/001/00${n}"'"]}'`
 done
