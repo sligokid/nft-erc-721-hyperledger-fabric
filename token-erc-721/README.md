@@ -38,12 +38,12 @@ Each CA manages participants within each organisation
     - citizen3
 ---
 ### Setup
-> Install project dependencies see docs/README.md
-
+> Install project dependencies 
+```bash
+curl -sSL https://bit.ly/2ysbOFE | bash -s
+`````
 ---
 ### NFT (Land Parcels) mint -> approve -> transfer -> issue title  
-
-
 
 ### Demo
 > End to end demo
